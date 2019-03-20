@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace candy_market
 {
@@ -30,7 +31,7 @@ namespace candy_market
 		internal static ConsoleKeyInfo MainMenu()
 		{
 			View mainMenu = new View()
-					.AddMenuOption("Did you just get some new candy? Add it here.")
+					.AddMenuOption("Press 1 to Add New Candy.")
 					.AddMenuOption("Do you want to eat some candy? Take it here.")
 					.AddMenuText("Press Esc to exit.");
 			Console.Write(mainMenu.GetFullMenu());
@@ -58,19 +59,45 @@ namespace candy_market
 		}
 
 		internal static void AddNewCandy(CandyStorage db)
-		{
-			var newCandy = new Candy
-			{
-				Name = "Whatchamacallit"
-			};
+        {
+            //var newCandy = new Candy
+            //{
+            //    Id = 1,
+            //    Name = "Whatchamacallit",
+            //    Manufacturer = "mars",
+            //    Flavor = "chocolate",
+            //    DateRecieved = "1/23/23",
+            //    IsEaten = false,
+            //};
 
-			var savedCandy = db.SaveNewCandy(newCandy);
-			Console.WriteLine($"Now you own the candy {savedCandy.Name}");
-		}
+        
+          var candies = new List<Candy> {};
+       
+            
+            //var savedCandy = db.SaveNewCandy(candies);
+			Console.WriteLine($"Candy Name:");
+            var candyName = Console.ReadLine();
+            candies.Add(new Candy() { Name = candyName });
+            Console.WriteLine($"Manufacturer:");
+            var candyManufacturer = Console.ReadLine();
+            candies.Add(new Candy() { Manufacturer = candyManufacturer });
+            Console.WriteLine($"Flavors:");
+            var candyFlavor = Console.ReadLine();
+            candies.Add(new Candy() { Flavor = candyFlavor });
+            Console.WriteLine($"Date Recieved:");
+            var candyDateReceived = Console.ReadLine();
+            candies.Add(new Candy() { DateReceived = candyDateReceived });
+            foreach (Candy cand in candies)
+            {
+                Console.WriteLine($"{cand.Name}");
+            }
+            Console.ReadLine();
+
+        }
 
 		private static void EatCandy(CandyStorage db)
 		{
-			throw new NotImplementedException();
-		}
+            //throw new NotImplementedException();
+        }
 	}
 }
