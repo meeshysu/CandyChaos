@@ -3,22 +3,22 @@ using System.Collections.Generic;
 
 namespace candy_market
 {
-    internal class CandyStorage
+    public class CandyStorage
     {
-        static List<Candy> _myCandy = new List<Candy>();
+        public List<Candy> myCandy = new List<Candy>();
 
         //internal IList<string> GetCandyTypes()
         //{
         //}
 
-        internal List<Candy> getAllTheCandies()
+        public List<Candy> getAllTheCandies()
         {
-            return _myCandy;
+            return myCandy;
         }
 
-        internal Candy SaveNewCandy(Candy newCandy)
+        public Candy SaveNewCandy(Candy newCandy)
         {
-            _myCandy.Add(newCandy);
+            myCandy.Add(newCandy);
             return newCandy;
         }
     }
