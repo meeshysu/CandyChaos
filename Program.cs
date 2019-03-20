@@ -40,7 +40,7 @@ namespace candy_market
 			return userOption;
 		}
 
-		private static bool TakeActions(CandyStorage db, ConsoleKeyInfo userInput)
+		public static bool TakeActions(CandyStorage db, ConsoleKeyInfo userInput)
 		{
 			Console.Write(Environment.NewLine);
 
@@ -67,7 +67,7 @@ namespace candy_market
             //    Name = "Whatchamacallit",
             //    Manufacturer = "mars",
             //    Flavor = "chocolate",
-            //    DateRecieved = "1/23/23",
+            //    DateRecieved = "1/23/23",af
             //    IsEaten = false,
             //};       
             
@@ -97,13 +97,24 @@ namespace candy_market
             Console.WriteLine($"{newCandy.Name} : {newCandy.Manufacturer} : {newCandy.Flavor} : {newCandy.DateReceived}");
             Console.ReadLine();
 
-            //Console.WriteLine($"Here is your candies: {db.getAllTheCandies()}");
-            //Console.ReadLine();
+            var userInput = MainMenu();
+            var exit = false;
+            exit = TakeActions(db, userInput);
         }
 
-		private static void EatCandy(CandyStorage db)
+        private static void EatCandy(CandyStorage db)
 		{
-            //throw new NotImplementedException();
+            Console.WriteLine("Here are your candies");
+
+            foreach (var candy in db.getAllTheCandies())
+            {
+                Console.WriteLine($"{candy.Name} : {candy.Manufacturer} : {candy.Flavor} : {candy.DateReceived}");
+            }
+
+            Console.ReadLine();
+            var userInput = MainMenu();
+            var exit = false;
+            exit = TakeActions(db, userInput);
         }
 	}
 }
