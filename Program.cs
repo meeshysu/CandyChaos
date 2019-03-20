@@ -69,31 +69,36 @@ namespace candy_market
             //    Flavor = "chocolate",
             //    DateRecieved = "1/23/23",
             //    IsEaten = false,
-            //};
-
-        
-          var candies = new List<Candy> {};
-       
+            //};       
             
-            //var savedCandy = db.SaveNewCandy(candies);
 			Console.WriteLine($"Candy Name:");
             var candyName = Console.ReadLine();
-            candies.Add(new Candy() { Name = candyName });
+            
             Console.WriteLine($"Manufacturer:");
             var candyManufacturer = Console.ReadLine();
-            candies.Add(new Candy() { Manufacturer = candyManufacturer });
-            Console.WriteLine($"Flavors:");
-            var candyFlavor = Console.ReadLine();
-            candies.Add(new Candy() { Flavor = candyFlavor });
+
+            Console.WriteLine($"Flavor:");
+            var flavorCrap = Console.ReadLine();
+
             Console.WriteLine($"Date Recieved:");
             var candyDateReceived = Console.ReadLine();
-            candies.Add(new Candy() { DateReceived = candyDateReceived });
-            foreach (Candy cand in candies)
+
+            var newCandy = new Candy
             {
-                Console.WriteLine($"{cand.Name}");
-            }
+                Name = candyName,
+                Manufacturer = candyManufacturer,
+                Flavor = flavorCrap,
+                DateReceived = candyDateReceived
+            };
+
+            db.SaveNewCandy(newCandy);
+
+            Console.WriteLine("Your Candy: ");
+            Console.WriteLine($"{newCandy.Name} : {newCandy.Manufacturer} : {newCandy.Flavor} : {newCandy.DateReceived}");
             Console.ReadLine();
 
+            //Console.WriteLine($"Here is your candies: {db.getAllTheCandies()}");
+            //Console.ReadLine();
         }
 
 		private static void EatCandy(CandyStorage db)

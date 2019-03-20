@@ -7,14 +7,19 @@ namespace candy_market
     {
         static List<Candy> _myCandy = new List<Candy>();
 
-        internal IList<string> GetCandyTypes()
+        //internal IList<string> GetCandyTypes()
+        //{
+        //}
+
+        internal List<Candy> getAllTheCandies()
         {
-            throw new NotImplementedException();
+            return _myCandy;
         }
 
         internal Candy SaveNewCandy(Candy newCandy)
         {
-            throw new NotImplementedException();
+            _myCandy.Add(newCandy);
+            return newCandy;
         }
     }
 }
