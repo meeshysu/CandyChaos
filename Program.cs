@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace candy_market
 {
@@ -60,17 +61,7 @@ namespace candy_market
 		}
 
 		internal static void AddNewCandy(CandyStorage db)
-        {
-            //var newCandy = new Candy
-            //{
-            //    Id = 1,
-            //    Name = "Whatchamacallit",
-            //    Manufacturer = "mars",
-            //    Flavor = "chocolate",
-            //    DateRecieved = "1/23/23",af
-            //    IsEaten = false,
-            //};       
-            
+        {    
 			Console.WriteLine($"Candy Name:");
             var candyName = Console.ReadLine();
             
@@ -80,15 +71,15 @@ namespace candy_market
             Console.WriteLine($"Flavor:");
             var flavorCrap = Console.ReadLine();
 
-            Console.WriteLine($"Date Recieved:");
-            var candyDateReceived = Console.ReadLine();
+            Console.WriteLine($"Date: {DateTime.Now}");
+            var candyDateReceived = DateTime.Now.ToString();
 
             var newCandy = new Candy
             {
                 Name = candyName,
                 Manufacturer = candyManufacturer,
                 Flavor = flavorCrap,
-                DateReceived = candyDateReceived
+                DateReceived = candyDateReceived,
             };
 
             db.SaveNewCandy(newCandy);
@@ -104,9 +95,10 @@ namespace candy_market
 
         private static void EatCandy(CandyStorage db)
 		{
+            var list = db.getAllTheCandies().OrderBy(x => x.DateReceived);
             Console.WriteLine("Here are your candies");
 
-            foreach (var candy in db.getAllTheCandies())
+            foreach (var candy in list)
             {
                 Console.WriteLine($"{candy.Name} : {candy.Manufacturer} : {candy.Flavor} : {candy.DateReceived}");
             }
