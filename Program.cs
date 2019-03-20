@@ -31,9 +31,10 @@ namespace candy_market
 		internal static ConsoleKeyInfo MainMenu()
 		{
 			View mainMenu = new View()
-					.AddMenuOption("Press 1 to Add New Candy.")
+					.AddMenuOption("Do you want to add some candy? Add it here.")
 					.AddMenuOption("Do you want to eat some candy? Take it here.")
-					.AddMenuText("Press Esc to exit.");
+                    .AddMenuOption("Do you want to trade some candy? Trade it here.")
+                    .AddMenuText("Press Esc to exit.");
 			Console.Write(mainMenu.GetFullMenu());
 			var userOption = Console.ReadKey();
 			return userOption;
