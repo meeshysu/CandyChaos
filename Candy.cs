@@ -1,4 +1,6 @@
-﻿namespace candy_market
+﻿using System;
+
+namespace candy_market
 {
     public class Candy
     {
