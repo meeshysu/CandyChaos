@@ -6,14 +6,6 @@ namespace candy_market
 {
 	class Program
 	{
-        public List<Users> chaosCandyUsers = new List<Users>()
-        {
-            new Users(1, "Michelle"),
-            new Users(2, "Chase"),
-            new Users(3, "Lance"),
-            new Users(4, "Martin"),
-        };
-
         static void Main(string[] args)
 		{
 			var db = SetupNewApp();
@@ -26,7 +18,7 @@ namespace candy_market
 			}
 		}
 
-		internal static CandyStorage SetupNewApp()
+		public static CandyStorage SetupNewApp()
 		{
 			Console.Title = "Cross Confectioneries Incorporated";
 			Console.BackgroundColor = ConsoleColor.White;
@@ -39,8 +31,12 @@ namespace candy_market
 
 		internal static ConsoleKeyInfo MainMenu()
 		{
+            //View userMenu = new View()
+            //        .AddMenuOption("Which user would you like to select?");
+            //Console.Write(userMenu.GetFullMenu());
 			View mainMenu = new View()
-					.AddMenuOption("Do you want to add some candy? Add it here.")
+                    .AddMenuOption("Select your user!")
+                    .AddMenuOption("Do you want to add some candy? Add it here.")
 					.AddMenuOption("Do you want to eat some candy? Take it here.")
                     .AddMenuOption("Do you want to eat a random piece of candy? Eat one here based on flavor...")
                     .AddMenuOption("Do you want to trade some candy? Trade it here.")
@@ -60,18 +56,39 @@ namespace candy_market
 			var selection = userInput.KeyChar.ToString();
 			switch (selection)
 			{
-				case "1": AddNewCandy(db);
+                case "1": PickUser(db);
+                    break;
+                case "2": AddNewCandy(db);
 					break;
-				case "2": EatCandy(db);
+				case "3": EatCandy(db);
 					break;
-                case "3": EatRandomCandy(db);
+                case "4": EatRandomCandy(db);
                     break;
                 default: return true;
 			}
 			return true;
 		}
 
-		internal static void AddNewCandy(CandyStorage db)
+        public static void PickUser(CandyStorage db)
+        {
+            var users = db.allTheUsers();
+            Console.WriteLine("Here are your users");
+
+            foreach (var user in users)
+            {
+                Console.WriteLine($"{user.userName}");
+            }
+            Console.ReadLine();
+
+            Console.WriteLine("Which user would you like to use?:");
+            var userChoice = Console.ReadLine();
+
+            var userInput = MainMenu();
+            var exit = false;
+            exit = TakeActions(db, userInput);
+        }
+
+        internal static void AddNewCandy(CandyStorage db)
         {    
 			Console.WriteLine($"Candy Name:");
             var candyName = Console.ReadLine();
