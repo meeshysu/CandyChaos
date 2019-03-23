@@ -34,6 +34,7 @@ namespace candy_market
 			View mainMenu = new View()
 					.AddMenuOption("Do you want to add some candy? Add it here.")
 					.AddMenuOption("Do you want to eat some candy? Take it here.")
+                    .AddMenuOption("Do you want to eat a random piece of candy? Eat one here based on flavor...")
                     .AddMenuOption("Do you want to trade some candy? Trade it here.")
                     .AddMenuText("Press Esc to exit.");
 			Console.Write(mainMenu.GetFullMenu());
@@ -55,7 +56,9 @@ namespace candy_market
 					break;
 				case "2": EatCandy(db);
 					break;
-				default: return true;
+                case "3": EatRandomCandy(db);
+                    break;
+                default: return true;
 			}
 			return true;
 		}
@@ -109,16 +112,33 @@ namespace candy_market
             var filterCandies = candyList.Where(candy => candy.Name == eatingCandyInput).ToList();
             var eatingCandy = filterCandies.First();
             candyList.Remove(eatingCandy);
-            //candyList.Add(receivingCandy);
-            //var candyList = db.getAllTheCandies();
-            //Random random = new Random();
-            //int randNum = random.Next(0, candyList.Count);
-            //candyList.RemoveAt(randNum);
-            //Console.WriteLine(candyList.Count);
 
             var userInput = MainMenu();
             var exit = false;
             exit = TakeActions(db, userInput);
         }
-	}
+
+        private static void EatRandomCandy(CandyStorage db)
+        {
+            var list = db.getAllTheCandies().OrderBy(x => x.DateReceived);
+            Console.WriteLine("Here are your candies");
+
+            foreach (var candy in list)
+            {
+                Console.WriteLine($"{candy.Name} : {candy.Manufacturer} : {candy.Flavor} : {candy.DateReceived}");
+            }
+
+            var candyList = db.getAllTheCandies();
+            Console.WriteLine("Would you like to eat a random piece of candy based on flavor?");
+            var eatingCandyInput = Console.ReadLine();
+            var filterCandies = candyList.Where(candy => candy.Flavor == eatingCandyInput).ToList();
+            Random random = new Random();
+            int randnum = random.Next(0, filterCandies.Count);
+            candyList.RemoveAt(randnum);
+
+            var userInput = MainMenu();
+            var exit = false;
+            exit = TakeActions(db, userInput);
+        }
+    }
 }
