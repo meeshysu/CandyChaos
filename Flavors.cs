@@ -14,6 +14,8 @@ namespace candy_market
         Fruity,
         Wafer,
         Vanilla,
-        Caramel
+        Caramel,
+        Rainbow,
+        Red
     }
 }
