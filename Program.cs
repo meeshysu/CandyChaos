@@ -82,7 +82,21 @@ namespace candy_market
 
             Console.WriteLine("Which user would you like to use?:");
             var userChoice = Console.ReadLine();
-            //Lamba filtering through name 
+            var filterName = users.Where(user => user.userName == userChoice).ToList();
+            Console.WriteLine($"Here are the candies for {userChoice}: ");
+
+            var candies = db.allTheDefaultCandies();
+
+            foreach (var candy in candies)
+            {
+                var owner = getOwnerOfCandy(candy.OwnerId);
+                {
+                    Console.WriteLine($"{candy.Name}");
+                }
+            }
+
+            Console.ReadLine();
+
             var userInput = MainMenu();
             var exit = false;
             exit = TakeActions(db, userInput);
