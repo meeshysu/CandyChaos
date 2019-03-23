@@ -82,7 +82,7 @@ namespace candy_market
 
             Console.WriteLine("Which user would you like to use?:");
             var userChoice = Console.ReadLine();
-
+            //Lamba filtering through name 
             var userInput = MainMenu();
             var exit = false;
             exit = TakeActions(db, userInput);
