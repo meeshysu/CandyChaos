@@ -6,6 +6,14 @@ namespace candy_market
 {
 	class Program
 	{
+        public List<Users> chaosCandyUsers = new List<Users>()
+        {
+            new Users(1, "Michelle"),
+            new Users(2, "Chase"),
+            new Users(3, "Lance"),
+            new Users(4, "Martin"),
+        };
+
 		static void Main(string[] args)
 		{
 			var db = SetupNewApp();
