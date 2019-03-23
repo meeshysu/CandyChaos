@@ -14,7 +14,7 @@ namespace candy_market
             new Users(4, "Martin"),
         };
 
-		static void Main(string[] args)
+        static void Main(string[] args)
 		{
 			var db = SetupNewApp();
 
@@ -107,7 +107,13 @@ namespace candy_market
         private static void EatCandy(CandyStorage db)
 		{
             var list = db.getAllTheCandies().OrderBy(x => x.DateReceived);
+            var defaultCandyList = db.allTheDefaultCandies().OrderBy(y => y.DateReceived);
             Console.WriteLine("Here are your candies");
+
+            foreach (var defaultCandy in defaultCandyList)
+            {
+                Console.WriteLine($"{defaultCandy.Name} : {defaultCandy.Manufacturer} : {defaultCandy.Flavor} : {defaultCandy.DateReceived}");
+            }
 
             foreach (var candy in list)
             {
