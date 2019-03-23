@@ -102,14 +102,19 @@ namespace candy_market
             {
                 Console.WriteLine($"{candy.Name} : {candy.Manufacturer} : {candy.Flavor} : {candy.DateReceived}");
             }
-            Console.WriteLine("Would you like to eat a random piece of candy? Click enter and press 2!");
-            Console.ReadLine();
-
+           
             var candyList = db.getAllTheCandies();
-            Random random = new Random();
-            int randNum = random.Next(0, candyList.Count);
-            candyList.RemoveAt(randNum);
-            Console.WriteLine(candyList.Count);
+            Console.WriteLine("Would you like to eat a piece of candy?");
+            var eatingCandyInput = Console.ReadLine();
+            var filterCandies = candyList.Where(candy => candy.Name == eatingCandyInput).ToList();
+            var eatingCandy = filterCandies.First();
+            candyList.Remove(eatingCandy);
+            //candyList.Add(receivingCandy);
+            //var candyList = db.getAllTheCandies();
+            //Random random = new Random();
+            //int randNum = random.Next(0, candyList.Count);
+            //candyList.RemoveAt(randNum);
+            //Console.WriteLine(candyList.Count);
 
             var userInput = MainMenu();
             var exit = false;
