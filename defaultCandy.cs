@@ -11,16 +11,16 @@ namespace candy_market
         public string Name { get; set; }
         public string Manufacturer { get; set; }
         public string Flavor { get; set; }
-        public DateTime DateReceived { get; set; }
+        public string DateReceived { get; set; }
 
-        public DefaultCandy(int id, int ownerid, string name, string manufacturer, string flavor, DateTime datereceivied)
+        public DefaultCandy(int id, int ownerid, string name, string manufacturer, string flavor, string datereceivied)
         {
             Id = id;
             OwnerId = id;
             Name = name;
             Manufacturer = manufacturer;
             Flavor = flavor;
-            DateReceived = DateReceived;
+            DateReceived = DateTime.Now.ToString();
         }
     }
 }
