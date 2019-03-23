@@ -4,7 +4,7 @@ using System.Text;
 
 namespace candy_market
 {
-    class Users
+    public class Users
     {
         public int Id { get; set; }
         public string userName { get; set; }
