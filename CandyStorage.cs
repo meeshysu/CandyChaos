@@ -32,9 +32,9 @@ namespace candy_market
             return chaosCandyUsers;
         }
 
-        private Users getOwnerOfCandy(int ownerId)
+        public List<Candy> getOwnersCandy(int ownerId)
         {
-            return chaosCandyUsers.Where(user => user.userName == NEED TO FILL THIS IN).ToList();
+            return defaultCandies.Where(candy => candy.OwnerId == ownerId).ToList();
         }
 
         public List<Candy> allTheDefaultCandies()

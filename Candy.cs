@@ -13,10 +13,10 @@ namespace candy_market
         public string Flavor { get; set; }
         public string DateReceived { get; set; }
 
-        public Candy(int id, int ownerid, string name, string manufacturer, string flavor, string datereceivied)
+        public Candy(int id, int ownerId, string name, string manufacturer, string flavor, string datereceivied)
         {
             Id = id;
-            OwnerId = id;
+            OwnerId = ownerId;
             Name = name;
             Manufacturer = manufacturer;
             Flavor = flavor;
