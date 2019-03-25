@@ -148,11 +148,11 @@ namespace candy_market
                 Console.WriteLine($"{candy.Name} : {candy.Manufacturer} : {candy.Flavor} : {candy.DateReceived}");
             }
            
-            var candyList = db.getAllTheCandies();
+            var candyList = db.allTheDefaultCandies();
             Console.WriteLine("Would you like to eat a piece of candy?");
             var eatingCandyInput = Console.ReadLine();
             var filterCandies = candyList.Where(candy => candy.Name == eatingCandyInput).ToList();
-            var eatingCandy = filterCandies.First();
+            var eatingCandy = filterCandies.Single();
             candyList.Remove(eatingCandy);
 
             var userInput = MainMenu();
@@ -162,7 +162,7 @@ namespace candy_market
 
         private static void EatRandomCandy(CandyStorage db)
         {
-            var list = db.getAllTheCandies().OrderBy(x => x.DateReceived);
+            var list = db.allTheDefaultCandies().OrderBy(x => x.DateReceived);
             Console.WriteLine("Here are your candies");
 
             foreach (var candy in list)
@@ -170,7 +170,7 @@ namespace candy_market
                 Console.WriteLine($"{candy.Name} : {candy.Manufacturer} : {candy.Flavor} : {candy.DateReceived}");
             }
 
-            var candyList = db.getAllTheCandies();
+            var candyList = db.allTheDefaultCandies();
             Console.WriteLine("Would you like to eat a random piece of candy based on flavor?");
             var eatingCandyInput = Console.ReadLine();
             var filterCandies = candyList.Where(candy => candy.Flavor == eatingCandyInput).ToList();
