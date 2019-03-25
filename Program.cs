@@ -82,17 +82,14 @@ namespace candy_market
 
             Console.WriteLine("Which user would you like to use?:");
             var userChoice = Console.ReadLine();
-            var filterName = users.Where(user => user.userName == userChoice).ToList();
+            var userIfound = users.Where(user => user.userName == userChoice).Single();
             Console.WriteLine($"Here are the candies for {userChoice}: ");
 
-            var candies = db.allTheDefaultCandies();
+            var candies = db.getOwnersCandy(userIfound.Id);
 
             foreach (var candy in candies)
             {
-                var owner = getOwnerOfCandy(candy.OwnerId);
-                {
-                    Console.WriteLine($"{candy.Name}");
-                }
+                Console.WriteLine($"{candy.Name}");
             }
 
             Console.ReadLine();
