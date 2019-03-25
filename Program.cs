@@ -134,7 +134,7 @@ namespace candy_market
 
         private static void EatCandy(CandyStorage db)
 		{
-            var list = db.getAllTheCandies().OrderBy(x => x.DateReceived);
+            var list = db.allTheDefaultCandies().OrderBy(x => x.DateReceived);
             var defaultCandyList = db.allTheDefaultCandies().OrderBy(y => y.DateReceived);
             Console.WriteLine("Here are your candies");
 
